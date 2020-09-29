@@ -2,9 +2,9 @@
 
 
 let fs = require("fs")
-let Intern = require("./Employee")
+let Employee = require("./Employee")
 
-class Intern extends Employee () {
+class Intern extends Employee {
     constructor(school) {
         super(name, id, email)
         this.school = school;
