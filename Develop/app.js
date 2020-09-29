@@ -46,7 +46,7 @@ function init() {
                             return console.log(err);
                         }
                     
-                        console.log("success")
+                        console.log("Team HTML Generated!")
                     });
                     break;
                 // default:
