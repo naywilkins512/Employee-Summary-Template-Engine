@@ -25,6 +25,22 @@ function init() {
                 choices: ["Manager", "Employee", "Intern", "Finish and Exit"],
                 name: 'role',
             },
+//test code, i think this is what i should do here
+            // switch(role) {
+//     case 'Manager':
+//       askManagerQuestion();
+//       break;
+//     case 'Employee':
+//         askEmployeeQuestion();
+//       break;
+//     case 'Intern':
+//         askInternQuestion();
+//       break;
+//     case 'Finish and Exit':
+//       break;
+//     default:
+//       console.log("done!");
+//   }
             {
                 message: 'Enter your name',
                 name: 'name',
