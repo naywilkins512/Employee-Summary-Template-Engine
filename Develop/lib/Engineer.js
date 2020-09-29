@@ -4,7 +4,7 @@ let fs = require("fs")
 let Employee = require("./Employee")
 
 class Engineer extends Employee {
-    constructor(github) {
+    constructor(role, name, id, email, github) {
         super(name, id, email)
         this.github = github;
     }

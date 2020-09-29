@@ -5,7 +5,7 @@ let fs = require("fs")
 let Employee = require("./Employee")
 
 class Intern extends Employee {
-    constructor(school) {
+    constructor(role, name, id, email, school) {
         super(name, id, email)
         this.school = school;
     }

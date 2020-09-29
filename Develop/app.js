@@ -22,7 +22,7 @@ function init() {
             {
                 type: "list",
                 message: "are you a Manager, Employee, or Intern?",
-                choices: ["Manager", "Employee", "Intern"],
+                choices: ["Manager", "Employee", "Intern", "Finish and Exit"],
                 name: 'role',
             },
             {
@@ -38,25 +38,24 @@ function init() {
                 name: 'id',
             },
             {
-                message: 'Enter your project Title',
-                name: 'title',
+                message: 'Enter your github profile',
+                name: 'github',
             },
-    
+            {
+                message: 'Enter your school name',
+                name: 'school',
+            },
+            {
+                message: 'Enter your office number',
+                name: 'officeNumber',
+            }
        
 
         ])
         .then(answers => {
             
-            let doc = render(answers)
+           render(answers)
 
-
-            fs.writeFile('../README.md', doc, function(err){
-                if (err) {
-                    return console.log(err);
-                } else {
-                    console.log("README Generated!")
-                }
-            })
         });
 
     }
