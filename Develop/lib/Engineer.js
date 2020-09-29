@@ -4,9 +4,10 @@ let fs = require("fs")
 let Employee = require("./Employee")
 
 class Engineer extends Employee {
-    constructor(role, name, id, email, github) {
+    constructor(name, id, email, github) {
         super(name, id, email)
         this.github = github;
+        this.role = "Engineer"
     }
 
     getGithub() {
@@ -14,7 +15,7 @@ class Engineer extends Employee {
     }
 
     getRole() {
-        return ("Engineer")
+        return this.role
     }
    
 };

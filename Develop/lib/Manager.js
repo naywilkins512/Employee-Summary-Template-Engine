@@ -4,13 +4,18 @@ let fs = require("fs")
 let Employee = require("./Employee")
 
 class Manager extends Employee {
-    constructor(role, name, id, email, officeNumber) {
+    constructor(name, id, email, officeNumber) {
         super(name, id, email);
         this.officeNumber = officeNumber;
+        this.role = "Manager"
+    }
+
+    getOfficeNumber() {
+        return this.officeNumber
     }
 
     getRole() {
-        return ("Manager")
+        return this.role
     }
    
 };

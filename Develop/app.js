@@ -10,71 +10,157 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+teamArray = []
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 // function to initialize program
 function init() {
-  
+
     inquirer
         .prompt([
             {
                 type: "list",
-                message: "are you a Manager, Employee, or Intern?",
-                choices: ["Manager", "Employee", "Intern", "Finish and Exit"],
+                message: "are you a Manager, Engineer, or Intern?",
+                choices: ["Manager", "Engineer", "Intern", "Finish and Exit"],
                 name: 'role',
-            },
-//test code, i think this is what i should do here
-            // switch(role) {
-//     case 'Manager':
-//       askManagerQuestion();
-//       break;
-//     case 'Employee':
-//         askEmployeeQuestion();
-//       break;
-//     case 'Intern':
-//         askInternQuestion();
-//       break;
-//     case 'Finish and Exit':
-//       break;
-//     default:
-//       console.log("done!");
-//   }
-            {
-                message: 'Enter your name',
-                name: 'name',
-            },
-            {
-                message: 'Enter your email',
-                name: 'email',
-            },
-            {
-                message: 'Enter your id number',
-                name: 'id',
-            },
-            {
-                message: 'Enter your github profile',
-                name: 'github',
-            },
-            {
-                message: 'Enter your school name',
-                name: 'school',
-            },
-            {
-                message: 'Enter your office number',
-                name: 'officeNumber',
-            }
-       
-
-        ])
+            }])
         .then(answers => {
-            
-           render(answers)
+
+            //test code, i think this is what i should do here
+            switch (answers.role) {
+                case 'Manager':
+                    askManagerQuestions()
+                    break;
+                case 'Engineer':
+                    askEngineerQuestions();
+                    break;
+                case 'Intern':
+                    askInternQuestions();
+                    break;
+                case 'Finish and Exit':
+                    let teamHTML = render(teamArray)
+                    fs.writeFile("./output/team.html", teamHTML, function(err){
+                        if (err) {
+                            return console.log(err);
+                        }
+                    
+                        console.log("success")
+                    });
+                    break;
+                // default:
+                //     console.log("done!");
+            }
 
         });
 
+
+    function askManagerQuestions() {
+
+        inquirer
+            .prompt([
+
+                {
+                    message: 'Enter your name',
+                    name: 'name',
+                },
+                {
+                    message: 'Enter your email',
+                    name: 'email',
+                },
+                {
+                    message: 'Enter your id number',
+                    name: 'id',
+                },
+                {
+                    message: 'Enter your office number',
+                    name: 'officeNumber',
+                }
+
+
+            ])
+            .then(answers => {
+        console.log(answers)
+            let newManager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+                console.log(newManager)
+                teamArray.push(newManager)
+                init()
+            });
+
     }
+
+
+    function askEngineerQuestions() {
+
+        inquirer
+            .prompt([
+
+                {
+                    message: 'Enter your name',
+                    name: 'name',
+                },
+                {
+                    message: 'Enter your email',
+                    name: 'email',
+                },
+                {
+                    message: 'Enter your id number',
+                    name: 'id',
+                },
+                {
+                    message: 'Enter your github profile',
+                    name: 'github',
+                }
+
+
+            ])
+            .then(answers => {
+                let newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+                console.log(newEngineer)
+                teamArray.push(newEngineer)
+                init()
+            });
+
+    }
+
+    function askInternQuestions() {
+
+        inquirer
+            .prompt([
+
+                {
+                    message: 'Enter your name',
+                    name: 'name',
+                },
+                {
+                    message: 'Enter your email',
+                    name: 'email',
+                },
+                {
+                    message: 'Enter your id number',
+                    name: 'id',
+                },
+                {
+                    message: 'Enter your school name',
+                    name: 'school',
+                }
+
+
+            ])
+            .then(answers => {
+
+                let newIntern = new Intern(answers.name, answers.id, answers.email, answers.school)
+                console.log(newIntern)
+                teamArray.push(newIntern)
+                init()
+            });
+
+    }
+}
+
+
+
 
 // // function call to initialize program
 init();
@@ -83,6 +169,7 @@ init();
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
+
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
